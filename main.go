@@ -4,13 +4,24 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 )
 
+// for instrumentation details see here: https://prometheus.io/docs/tutorials/instrumenting_http_server_in_go/
+var requestCounter = prometheus.NewCounter(
+	prometheus.CounterOpts{
+		Name: "request_count",
+		Help: "No of request handled by HelloServer handler",
+	},
+)
+
 func main() {
-	http.Handle("/metrics", promhttp.Handler())
-	http.ListenAndServe(":2112", nil)
+
+	prometheus.MustRegister(requestCounter)
+
 	http.HandleFunc("/", HelloServer)
+	http.Handle("/metrics", promhttp.Handler())
 	http.ListenAndServe(":8080", nil)
 
 }
