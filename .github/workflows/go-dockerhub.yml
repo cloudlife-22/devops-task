@@ -35,6 +35,16 @@ jobs:
       run: go test -cover
     
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag devops-task:$(date +%s)
-      
+      run: docker build . --file Dockerfile --tag devops-task:$(github.sha)
+    
+    - name: Run Trivy vulnerability scanner
+      uses: aquasecurity/trivy-action@master
+      with:
+        image-ref: 'devops-task:${{ github.sha }}'
+        format: 'table'
+        exit-code: '1'
+        ignore-unfixed: true
+        vuln-type: 'os,library'
+        severity: 'CRITICAL,HIGH'
+    
     
