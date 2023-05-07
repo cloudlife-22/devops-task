@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment                 # Type of Kubernetes resource
+metadata:
+  name: devops-task          # Name of the Kubernetes resource
+spec:
+  replicas: 2                    # Number of pods to run at any given time
+  selector:
+    matchLabels:
+      app: devops-task       # This deployment applies to any Pods matching the specified label
+  template:                      # This deployment will create a set of pods using the configurations in this template
+    metadata:
+      labels:                    # The labels that will be applied to all of the pods in this deployment
+        app: devops-task
+    spec:                        # Spec for the container which will run in the Pod
+      containers:
+      - name: go-hello-world
+        image: khanosal/devops-task:df4f502305f631c29a1df2d7e1db533f82ac5d8f
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "125m"
+          limits:
+            memory: "128Mi"
+            cpu: "250m"
+        imagePullPolicy: IfNotPresent
+        ports:
+          - containerPort: 8080  # Should match the port number that the Go application listens on
+        livenessProbe:           # To check the health of the Pod
+          httpGet:
+            path: /health
+            port: 8080
+            scheme: HTTP
+          initialDelaySeconds: 5
+          periodSeconds: 15
+          timeoutSeconds: 5
+        readinessProbe:          # To check if the Pod is ready to serve traffic or not
+          httpGet:
+            path: /readiness
+            port: 8080
+            scheme: HTTP
+          initialDelaySeconds: 5
+          timeoutSeconds: 1    

@@ -1,0 +1,9 @@
+# https://www.coding-bootcamps.com/blog/build-containerized-applications-with-golang-on-kubernetes.html
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: devops-task
+resources:
+  # - namespace.yaml
+  - service.yaml
+  - deployment.yaml
+  - namespace.yaml
