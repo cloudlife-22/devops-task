@@ -21,3 +21,6 @@ Dockerfile
 
 # Go workspace file
 go.work
+
+# k8s manifests 
+./kustomize
