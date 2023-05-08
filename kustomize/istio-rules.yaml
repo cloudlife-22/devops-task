@@ -23,7 +23,7 @@ spec:
   hosts:
     - "*"
   gateways:
-    - gateway
+    - ingress-gateway-configuration
   http:
     - route:
         - destination:
