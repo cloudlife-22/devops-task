@@ -14,7 +14,7 @@ spec:
     spec:                        # Spec for the container which will run in the Pod
       containers:
       - name: go-hello-world
-        image: khanosal/devops-task:df4f502305f631c29a1df2d7e1db533f82ac5d8f
+        image: khanosal/devops-task:latest # {"$imagepolicy": "flux-system:devops-task"}
         resources:
           requests:
             memory: "64Mi"
