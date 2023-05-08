@@ -50,7 +50,7 @@ jobs:
         go-version: 1.20.x
 
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag khanosal/devops-task:${GITHUB_SHA}
+      run: docker build . --file Dockerfile --tag khanosal/devops-task:${GITHUB_SHA} --tag khanosal/devops-task:latest
     
     - name: Run Trivy vulnerability scanner
       uses: aquasecurity/trivy-action@master
@@ -70,5 +70,5 @@ jobs:
         password: ${{ secrets.DOCKERHUB_TOKEN }}
     
     - name: Push to Docker Hub
-      run: docker push khanosal/devops-task:${GITHUB_SHA}
+      run: docker push -a
     
