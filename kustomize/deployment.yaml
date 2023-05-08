@@ -18,10 +18,10 @@ spec:
         resources:
           requests:
             memory: "64Mi"
-            cpu: "125m"
+            cpu: "64m"
           limits:
             memory: "128Mi"
-            cpu: "250m"
+            cpu: "128m"
         imagePullPolicy: IfNotPresent
         ports:
           - containerPort: 8080  # Should match the port number that the Go application listens on
