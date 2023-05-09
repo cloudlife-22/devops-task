@@ -7,13 +7,13 @@ spec:
   hosts:
     - "devops-task.app"
   gateways:
-    - ingress-gateway-configuration
+    - istio-system/ingress-gateway-configuration
   http:
   - match:
     - uri:
         exact: /
-      route:
-        - destination:
-            host: devops-task.devops-task.svc.cluster.local
-            port:
-              number: 80
+    route:
+      - destination:
+          host: devops-task.devops-task.svc.cluster.local
+          port:
+            number: 80
