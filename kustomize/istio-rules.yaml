@@ -1,30 +1,17 @@
 apiVersion: networking.istio.io/v1alpha3
-kind: Gateway
-metadata:
-  name: ingress-gateway-configuration
-  namespace: devops-task
-spec:
-  selector:
-    istio: ingressgateway # use Istio default gateway implementation
-  servers:
-  - port:
-      number: 80
-      name: http
-      protocol: HTTP
-    hosts:
-    - "*"   # Domain name of the external website
----
-apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
   name: devops-task
   namespace: devops-task
 spec:
   hosts:
-    - "*"
+    - "devops-task.app"
   gateways:
     - ingress-gateway-configuration
   http:
+  - match:
+    - uri:
+        exact: /
     - route:
         - destination:
             host: devops-task.devops-task.svc.cluster.local
