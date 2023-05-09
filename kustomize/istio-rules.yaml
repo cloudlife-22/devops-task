@@ -12,7 +12,7 @@ spec:
   - match:
     - uri:
         exact: /
-    - route:
+      route:
         - destination:
             host: devops-task.devops-task.svc.cluster.local
             port:
