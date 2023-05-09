@@ -7,4 +7,4 @@ resources:
   - service.yaml
   - deployment.yaml
   - namespace.yaml
-  # - istio-rules.yaml
+  - istio-rules.yaml
