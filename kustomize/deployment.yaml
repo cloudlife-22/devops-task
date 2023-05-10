@@ -22,7 +22,7 @@ spec:
           limits:
             memory: "128Mi"
             cpu: "128m"
-        imagePullPolicy: IfNotPresent
+        imagePullPolicy: Always
         ports:
           - containerPort: 8080  # Should match the port number that the Go application listens on
         livenessProbe:           # To check the health of the Pod
