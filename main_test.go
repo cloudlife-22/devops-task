@@ -20,7 +20,7 @@ func TestHelloServer(t *testing.T) {
 	}
 	defer resp.Body.Close()
 
-	expected := "Hello, !"
+	expected := "Hello World, !"
 	b, err := io.ReadAll(resp.Body)
 	if err != nil {
 		t.Error(err)
@@ -44,7 +44,7 @@ func TestHelloServerPath(t *testing.T) {
 	}
 	defer resp.Body.Close()
 
-	expected := "Hello, World!"
+	expected := "Hello World, World!"
 	b, err := io.ReadAll(resp.Body)
 	if err != nil {
 		t.Error(err)
